@@ -3,7 +3,7 @@
 Dart State Management (POC)
 inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) 
 
-![redarx-principles](redarx_01_2.jpg)
+![redarx-principles](docs/graphs/redarx_01_2.jpg)
 
 ## Goals
 
