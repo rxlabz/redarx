@@ -1,6 +1,6 @@
-# Redarx
+# Redarx (POC)
 
-Dart State Management (POC)
+Dart State Management 
 inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) 
 
 ![redarx-principles](docs/graphs/redarx_01_2.jpg)
@@ -9,12 +9,7 @@ inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](http://red
 
 - study Dart : streams, generics, annotations, asynchrony...
 - study Redux state management
-- study  command pattern 
 - experiment an Action/Commands pairing
-- study X,...
-- experiment Y,...
-
-## Usage
 
 
 ## Principles
@@ -30,7 +25,7 @@ A Commander listen to a stream of Actions dispatched by a Dispatcher injected in
 Each action is defined by an ActionType, and can contains data. Actions are linked / tied to commandes 
 
 - the dispatcher is injected in view || controller || PresentationModel || ViewModel  
-- Controllers use the dispatcher to dispatches send Action actions
+- Controllers use the dispatcher to dispatch actions
 - Action are categorized by types, types are defined in ActionTypes
 - the dispatcher stream dispatched actions
 - the dispatcher is injected in Commander
@@ -51,5 +46,7 @@ Each action is defined by an ActionType, and can contains data. Actions are link
 
 ## Questionning
 
+- dispatcher : use a streamr.add principles raser
 - typed Action ? BookAction, UserAction ...?
 - multiple store ? dispatcher ? commander ?
+- each component could set an action stream and the commander could maybe listen to it

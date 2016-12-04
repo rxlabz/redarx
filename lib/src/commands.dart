@@ -1,4 +1,4 @@
-import 'package:redarx/src/action.dart';
+import 'package:redarx/src/request.dart';
 import 'package:redarx/src/dispatcher.dart';
 import 'package:redarx/src/model.dart';
 import 'package:redarx/src/store.dart';
@@ -28,17 +28,22 @@ class Commander {
 
   Commander(CommanderConfig this.config, Store<AbstractModel> this.store,
       Dispatcher this.dispatcher) {
-    dispatcher.onDispatch.listen((Action a) => xqt(a));
+    dispatcher.onDispatch.listen((Request a) => handle(a));
   }
 
   cancel() => store.cancel();
 
-  exec(Command<AbstractModel> c) {
+  _exec(Command<AbstractModel> c) {
     store.update(c);
   }
 
-  xqt(Action a) {
-    exec(this.config.getHandler(a.type)(a.value));
+  handle(Request a) {
+    var handler = this.config.getHandler(a.actionType);
+    try{
+      _exec((a.value));
+    } catch (e){
+      print('Commander.handle... No command defined for this Action ${a}');
+    }
   }
 }
 
@@ -62,7 +67,7 @@ class CommanderConfig<A> {
     return handlers.keys.contains(type) ? handlers[type] : null;
   }
 
-  void addHandler(Action a, CommandBuilder<AbstractModel> constructor) {
-    handlers[a.type] = constructor;
+  void addHandler(Request a, CommandBuilder<AbstractModel> constructor) {
+    handlers[a.actionType] = constructor;
   }
 }

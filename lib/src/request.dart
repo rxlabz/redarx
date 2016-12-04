@@ -1,11 +1,11 @@
 /**
  * Action : type , update value
  */
-class Action<T, V> {
-  T type;
+class Request<T, V> {
+  T actionType;
   V value;
 
-  Action(T this.type, {withValue}){
+  Request(T this.actionType, {withValue}){
     value = withValue;
   }
 }

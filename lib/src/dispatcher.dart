@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:redarx/src/action.dart';
+import 'package:redarx/src/request.dart';
 
 /**
  * actions dispatcher
  */
 class Dispatcher {
-  StreamController<Action> streamr = new StreamController();
+  StreamController<Request> streamr = new StreamController();
 
   /**
    * dispatched actions stream
    */
   get onDispatch => streamr.stream;
 
-  dispatch(Action a) {
+  dispatch(Request a) {
     streamr.add(a);
   }
 }
