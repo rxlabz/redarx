@@ -8,4 +8,10 @@ class Request<T, V> {
   Request(T this.actionType, {withValue}){
     value = withValue;
   }
+
+  @override
+  String toString() {
+    return "Request{ type : $actionType , value $value }";
+  }
+
 }

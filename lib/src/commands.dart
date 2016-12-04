@@ -6,13 +6,13 @@ import 'package:redarx/src/store.dart';
 /**
  * type of method which provide a method to instantiate a new Command
  */
-typedef Command<T> CommandBuilder<T>(dynamic value);
+typedef Command<T> CommandBuilder<T extends AbstractModel>(dynamic value);
 
 
 /**
  * Command Base class
  */
-abstract class Command<G> {
+abstract class Command<G extends AbstractModel> {
   G exec(G model);
 }
 
@@ -40,9 +40,9 @@ class Commander {
   handle(Request a) {
     var handler = this.config.getHandler(a.actionType);
     try{
-      _exec((a.value));
-    } catch (e){
-      print('Commander.handle... No command defined for this Action ${a}');
+      _exec(handler(a.value));
+    } catch (err){
+      print('Commander.handle... No command defined for this Action ${a} \n $err');
     }
   }
 }

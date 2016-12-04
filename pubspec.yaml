@@ -1,14 +1,11 @@
 name: redarx
-description: A starting point for Dart libraries or applications.
-version: 0.1.1
-#author: Me <email@example.com>
-#homepage: https://www.example.com
+description: Experimental State management inspired by Parsley / Redux/ ngrx & André Stalz work
+version: 0.1.2
+author: Erick G. <erick@rxlabz.com>
+homepage: https://rxla.bz
 
 environment:
   sdk: '>=1.0.0 <2.0.0'
-
-#dependencies:
-#  lib_name: any
 
 dev_dependencies:
   test: '>=0.12.0 <0.13.0'
