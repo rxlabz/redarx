@@ -32,19 +32,22 @@ class Commander {
 
   /// update store with Command defined by Request
   exec(Request a) {
-    final command = this.config.getCommand(a.type);
-    try {
-      store.update(command(a.payload));
-    } catch (err) {
-      print(
-          'Commander.exec... No command defined for this Request ${a} \n $err');
-    }
+    store.update(config[a.type](a.payload));
   }
 }
 
 /// Commander configuration :
 /// map [Request] to [CommandBuilder]
 class CommanderConfig<A> {
+
+  CommandBuilder<AbstractModel> operator [](key) {
+    try {
+      return map[key];
+    } catch (err) {
+      print(
+          'CommanderConfig[key] » No command defined for this Request ${key} \n $err');
+    }
+  }
 
   /// map of [RequestType] : [Command]<[AbstractModel]>
   Map<A, CommandBuilder<AbstractModel>> map;
@@ -53,6 +56,7 @@ class CommanderConfig<A> {
   CommanderConfig(this.map);
 
   /// return a Command constructor proxy from a (generic) ActionType
+  @deprecated
   CommandBuilder<AbstractModel> getCommand(A type) =>
       map.keys.contains(type) ? map[type] : null;
 
