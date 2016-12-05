@@ -5,7 +5,7 @@ humbly inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](htt
 
 ![redarx-principles](docs/graphs/redarx_01_3.jpg)
 
-## [Demo](https://github.com/rxlabz/redarx-todo)
+## [Demo](https://github.com/rxlabz/redarx-todo) / [Dart doc](https://rxlabz.github.io/redarx)
 
 ## Goals
 
@@ -28,26 +28,28 @@ Each Request is defined by an RequestType enum, and can contains data.
 
 Requests are "converted" to commands by the Commander, based on the CommanderConfig.map definition  
 
-- the dispatcher is injected in view || controller || PresentationModel || ViewModel  
-- Controllers use the dispatcher to dispatch Requests
-- Request are categorized by types, types are defined in RequestTypes
-- the dispatcher stream dispatched Requests
-- the dispatcher is injected in Commander
-- the commander listen the Requests stream
+- the dispatcher.dispatch function is injected in view || controller || PresentationModel || ViewModel  
+- Request are categorized by types, types are defined in RequestType enum
+- the dispatcher stream Requests
+- the dispatcher requestStream is injected in Commander, the commander listen to it,
+transforms Request to Command and transfer to the store.apply( command ) method
+
 - each Request is tied to a command via a CommanderConfig which is injected in Commander
-- Commander need a CommanderConfig containing a Map<RequestType,Command>
-- when an Request is dispatched, the commander add the corresponding command to the store
-- the store then execute 
-- a (synchronous) command is executed to update the store
-- the store is injected in the commander
+
+```dart
+// instanciate commands form requests 
+config[request.type](request.payload);
+```
+
+- Commander need a CommanderConfig containing a Map<RequestType,CommandBuilder>
+- the store then execute commandHistory and push the new model value to a model stream
 
 ## TODO 
 
-- implements a Scan stream transformer » just emit the last reduced state
-- fix the generic/command ( <T extends Model> mess)
+- ~~fix the generic/command ( <T extends Model> mess)~~
+- **implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state**
 - typed Request ? BookRequest, UserRequest ...?
 - async commands 
-- more stream
 - external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
 - ...
 

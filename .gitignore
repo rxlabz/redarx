@@ -19,6 +19,7 @@ pubspec.lock
 *.info.json
 
 # Directory created by dartdoc
+doc/
 doc/api/
 
 # JetBrains IDEs
