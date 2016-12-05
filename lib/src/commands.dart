@@ -4,88 +4,61 @@ import 'package:redarx/src/model.dart';
 import 'package:redarx/src/request.dart';
 import 'package:redarx/src/store.dart';
 
-/**
- * type of method which provide a method to instantiate a new Command
- */
+/// type of method which provide a method to instantiate a new Command
 typedef Command<T> CommandBuilder<T extends AbstractModel>(value);
 
-
-/**
- * Command Base class
- */
+/// Command Base class
 abstract class Command<G extends AbstractModel> {
   G exec(G model);
 }
 
-/**
- * listen to dispatcher's stream of actions and map them to commands, executed on the store
- */
+/// listen to dispatcher's stream of actions and map them to commands, executed on the store
 class Commander {
-  /**
-   * commander config : RequestType » Commands mapping
-   */
+  /// commander config : RequestType » Commands mapping
   CommanderConfig config;
 
-  /**
-   * store
-   */
+  /// store
   Store<AbstractModel> store;
 
-  /**
-   *
-   * @param CommanderConfig config
-   * @param Store<AbstractModel> this.store
-   * @param Stream<Request> requestStream
-   */
-  Commander(CommanderConfig this.config, Store<AbstractModel> this.store,
-      Stream<Request> requestStream) {
+   /// [CommanderConfig] config / [Store]<AbstractModel> this.store
+   /// [Stream]<Request> requestStream
+  Commander(this.config, this.store, Stream<Request> requestStream) {
     requestStream.listen((Request a) => exec(a));
     store.apply();
   }
 
-  /**
-   * cancel last store command
-   */
+  /// cancel last store command
   cancel() => store.cancel();
 
-  /**
-   * update store with Command defined by Request
-   */
+  /// update store with Command defined by Request
   exec(Request a) {
-    var handler = this.config.getHandler(a.actionType);
-    try{
-      store.update(handler(a.value));
-    } catch (err){
-      print('Commander.handle... No command defined for this Action ${a} \n $err');
+    final command = this.config.getCommand(a.type);
+    try {
+      store.update(command(a.payload));
+    } catch (err) {
+      print(
+          'Commander.exec... No command defined for this Request ${a} \n $err');
     }
   }
 }
 
-/**
- * pair Action » CommandBuilders
- */
+/// Commander configuration :
+/// map [Request] to [CommandBuilder]
 class CommanderConfig<A> {
-  Map<A, CommandBuilder<AbstractModel>> handlers;
 
-  /**
-   * RequestTypes / CommandBuilders mapping injection
-   */
-  CommanderConfig(Map<A, CommandBuilder> map) {
-    handlers = map;
-  }
+  /// map of [RequestType] : [Command]<[AbstractModel]>
+  Map<A, CommandBuilder<AbstractModel>> map;
 
-  /**
-   * return a Command constructor proxy from a (generic) ActionType
-   */
-  CommandBuilder<AbstractModel> getHandler(A type) {
-    return handlers.keys.contains(type) ? handlers[type] : null;
-  }
+  /// RequestTypes / CommandBuilders mapping injection
+  CommanderConfig(this.map);
 
-  /**
-   * add post constructor
-   */
-   // TODO : define use cases
+  /// return a Command constructor proxy from a (generic) ActionType
+  CommandBuilder<AbstractModel> getCommand(A type) =>
+      map.keys.contains(type) ? map[type] : null;
+
+  // TODO : define use cases
+  /// add post constructor
   void addHandler(Request a, CommandBuilder<AbstractModel> constructor) {
-    handlers[a.actionType] = constructor;
+    map[a.type] = constructor;
   }
 }
