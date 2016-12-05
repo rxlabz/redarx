@@ -11,9 +11,7 @@ class Dispatcher {
   /**
    * dispatched actions stream
    */
-  get onDispatch => streamr.stream;
+  Stream<Request> get onRequest => streamr.stream;
 
-  dispatch(Request a) {
-    streamr.add(a);
-  }
+  dispatch(Request a) => streamr.add(a);
 }
