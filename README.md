@@ -3,7 +3,7 @@
 Experimental Dart State Management 
 humbly inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) and [André Stalz work](https://github.com/staltz)
 
-![redarx-principles](docs/graphs/redarx_01_2.jpg)
+![redarx-principles](docs/graphs/redarx_01_3.jpg)
 
 ## [Demo](https://github.com/rxlabz/redarx-todo)
 
@@ -16,15 +16,17 @@ humbly inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](htt
 
 ## Principles
 
-The Application State is managed by a (Generic)Store.
+The Application State is managed in a Store<AbstractModel>.
 
 State is updated by commands, and the store keep a list of executed commands.
 
 State is evaluated by a reducers of model commands updates, basic cancellation is allowed by simply remove the last command from "history".
 
-A Commander listen to a stream of Requests dispatched by a Dispatcher injected in the applicaiton components | controllers | PM | VM
+A Commander listen to a stream of Requests dispatched by a Dispatcher injected in the application components | controllers | PM | VM
 
-Each Request is defined by an RequestType, and can contains data. Requests are linked / tied to commandes 
+Each Request is defined by an RequestType enum, and can contains data.
+
+Requests are "converted" to commands by the Commander, based on the CommanderConfig.map definition  
 
 - the dispatcher is injected in view || controller || PresentationModel || ViewModel  
 - Controllers use the dispatcher to dispatch Requests
