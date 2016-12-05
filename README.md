@@ -16,6 +16,102 @@ humbly inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](htt
 
 ## Principles
 
+### Requests to Commands Mapping via CommanderConfig
+
+```dart
+final requestMap = new Map<RequestType, CommandBuilder>()
+  ..[RequestType.ADD_TODO] = AddTodoCommand.constructor()
+  ..[RequestType.ARCHIVE] = ArchiveCommand.constructor()
+  ..[RequestType.UPDATE_TODO] = UpdateTodoCommand.constructor()
+  ..[RequestType.CLEAR_ARCHIVES] = ClearArchivesCommand.constructor()
+  ..[RequestType.TOGGLE_SHOW_COMPLETED] = ToggleShowArchivesCommand.constructor();
+```
+
+### Initialization
+
+```dart
+final cfg = new CommanderConfig<RequestType>(requestMap);
+final store = new Store<TodoModel>(() => new TodoModel.empty());
+final dispatcher = new Dispatcher();
+
+final cmder = new Commander(cfg, store, dispatcher.onRequest);
+
+var app = new AppComponent(querySelector('#app') )
+..model$ = store.data$
+..dispatch = dispatcher.dispatch
+..render();
+```
+
+### Dispatching requests
+
+RequestType are defined via an enum
+
+```dart
+enum RequestType {
+  ADD_TODO,
+  UPDATE_TODO,
+  ARCHIVE,
+  CLEAR_ARCHIVES,
+  TOGGLE_SHOW_COMPLETED
+}
+```
+
+Requests are defined by a type and an optional payload.
+
+```dart
+dispatch( new Request(
+    RequestType.ADD_TODO, withData: new Todo(fldTodo.value))
+    );
+```
+
+### Commands
+
+Requests are mapped to commands by Commander and passed to the store.update()
+
+```dart
+exec(Request a) {
+    store.update(config[a.type](a.payload));
+  }
+```
+
+Commands defined a public exec method which receive the currentState and return the new one.
+
+```dart
+class AddTodoCommand extends Command<TodoModel> {
+  Todo todo;
+
+  AddTodoCommand(this.todo);
+
+  @override
+  TodoModel exec(TodoModel model) => model..items.add(todo);
+
+  static CommandBuilder constructor() {
+    return (Todo todo) => new AddTodoCommand(todo);
+  }
+}
+```
+
+### State listening
+
+The store exposes a model$ stream
+
+```dart
+Stream<TodoModel> _model$;
+
+set model$(Stream<TodoModel> value) {
+_model$ = value;
+    
+modelSub = _model$.listen((TodoModel model) {
+      list.todos = model.todos;
+      footer.numCompleted = model.numCompleted;
+      footer.numRemaining = model.numRemaining;
+      footer.showCompleted = model.showCompleted;
+    });
+  }
+```
+
+## Event$ » Request$ » Command$ » state$ 
+
 The Application State is managed in a Store<AbstractModel>.
 
 State is updated by commands, and the store keep a list of executed commands.
@@ -43,6 +139,8 @@ config[request.type](request.payload);
 
 - Commander need a CommanderConfig containing a Map<RequestType,CommandBuilder>
 - the store then execute commandHistory and push the new model value to a model stream
+
+
 
 ## TODO 
 

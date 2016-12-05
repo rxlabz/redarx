@@ -12,8 +12,10 @@ abstract class Command<G extends AbstractModel> {
   G exec(G model);
 }
 
-/// listen to dispatcher's stream of actions and map them to commands, executed on the store
+/// listen to dispatcher's stream of actions and
+/// map them to commands, executed by the store on the model
 class Commander {
+
   /// commander config : RequestType » Commands mapping
   CommanderConfig config;
 
