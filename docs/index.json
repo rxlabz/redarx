@@ -1,0 +1,758 @@
+[
+  {
+    "name": "redarx",
+    "qualifiedName": "redarx",
+    "href": "redarx/redarx-library.html",
+    "type": "library"
+  },
+  {
+    "name": "AbstractModel",
+    "qualifiedName": "redarx.AbstractModel",
+    "href": "redarx/AbstractModel-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "AbstractModel",
+    "qualifiedName": "redarx.AbstractModel",
+    "href": "redarx/AbstractModel/AbstractModel.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.AbstractModel.hashCode",
+    "href": "redarx/AbstractModel/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.AbstractModel.runtimeType",
+    "href": "redarx/AbstractModel/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "initial",
+    "qualifiedName": "redarx.AbstractModel.initial",
+    "href": "redarx/AbstractModel/initial.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.AbstractModel.toString",
+    "href": "redarx/AbstractModel/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.AbstractModel.noSuchMethod",
+    "href": "redarx/AbstractModel/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.AbstractModel.==",
+    "href": "redarx/AbstractModel/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "AbstractModel",
+      "type": "class"
+    }
+  },
+  {
+    "name": "Command",
+    "qualifiedName": "redarx.Command",
+    "href": "redarx/Command-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "Command",
+    "qualifiedName": "redarx.Command",
+    "href": "redarx/Command/Command.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.Command.hashCode",
+    "href": "redarx/Command/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.Command.runtimeType",
+    "href": "redarx/Command/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "exec",
+    "qualifiedName": "redarx.Command.exec",
+    "href": "redarx/Command/exec.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.Command.toString",
+    "href": "redarx/Command/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.Command.noSuchMethod",
+    "href": "redarx/Command/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.Command.==",
+    "href": "redarx/Command/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Command",
+      "type": "class"
+    }
+  },
+  {
+    "name": "Commander",
+    "qualifiedName": "redarx.Commander",
+    "href": "redarx/Commander-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "Commander",
+    "qualifiedName": "redarx.Commander",
+    "href": "redarx/Commander/Commander.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "config",
+    "qualifiedName": "redarx.Commander.config",
+    "href": "redarx/Commander/config.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "store",
+    "qualifiedName": "redarx.Commander.store",
+    "href": "redarx/Commander/store.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.Commander.hashCode",
+    "href": "redarx/Commander/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.Commander.runtimeType",
+    "href": "redarx/Commander/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "cancel",
+    "qualifiedName": "redarx.Commander.cancel",
+    "href": "redarx/Commander/cancel.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "exec",
+    "qualifiedName": "redarx.Commander.exec",
+    "href": "redarx/Commander/exec.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.Commander.toString",
+    "href": "redarx/Commander/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.Commander.noSuchMethod",
+    "href": "redarx/Commander/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.Commander.==",
+    "href": "redarx/Commander/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Commander",
+      "type": "class"
+    }
+  },
+  {
+    "name": "CommanderConfig",
+    "qualifiedName": "redarx.CommanderConfig",
+    "href": "redarx/CommanderConfig-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "CommanderConfig",
+    "qualifiedName": "redarx.CommanderConfig",
+    "href": "redarx/CommanderConfig/CommanderConfig.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "map",
+    "qualifiedName": "redarx.CommanderConfig.map",
+    "href": "redarx/CommanderConfig/map.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.CommanderConfig.hashCode",
+    "href": "redarx/CommanderConfig/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.CommanderConfig.runtimeType",
+    "href": "redarx/CommanderConfig/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "addHandler",
+    "qualifiedName": "redarx.CommanderConfig.addHandler",
+    "href": "redarx/CommanderConfig/addHandler.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "getCommand",
+    "qualifiedName": "redarx.CommanderConfig.getCommand",
+    "href": "redarx/CommanderConfig/getCommand.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.CommanderConfig.toString",
+    "href": "redarx/CommanderConfig/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.CommanderConfig.noSuchMethod",
+    "href": "redarx/CommanderConfig/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator []",
+    "qualifiedName": "redarx.CommanderConfig.[]",
+    "href": "redarx/CommanderConfig/operator_get.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.CommanderConfig.==",
+    "href": "redarx/CommanderConfig/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "CommanderConfig",
+      "type": "class"
+    }
+  },
+  {
+    "name": "Dispatcher",
+    "qualifiedName": "redarx.Dispatcher",
+    "href": "redarx/Dispatcher-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "Dispatcher",
+    "qualifiedName": "redarx.Dispatcher",
+    "href": "redarx/Dispatcher/Dispatcher.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "onRequest",
+    "qualifiedName": "redarx.Dispatcher.onRequest",
+    "href": "redarx/Dispatcher/onRequest.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "streamr",
+    "qualifiedName": "redarx.Dispatcher.streamr",
+    "href": "redarx/Dispatcher/streamr.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.Dispatcher.hashCode",
+    "href": "redarx/Dispatcher/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.Dispatcher.runtimeType",
+    "href": "redarx/Dispatcher/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "dispatch",
+    "qualifiedName": "redarx.Dispatcher.dispatch",
+    "href": "redarx/Dispatcher/dispatch.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.Dispatcher.toString",
+    "href": "redarx/Dispatcher/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.Dispatcher.noSuchMethod",
+    "href": "redarx/Dispatcher/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.Dispatcher.==",
+    "href": "redarx/Dispatcher/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Dispatcher",
+      "type": "class"
+    }
+  },
+  {
+    "name": "Request",
+    "qualifiedName": "redarx.Request",
+    "href": "redarx/Request-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "Request",
+    "qualifiedName": "redarx.Request",
+    "href": "redarx/Request/Request.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "payload",
+    "qualifiedName": "redarx.Request.payload",
+    "href": "redarx/Request/payload.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "type",
+    "qualifiedName": "redarx.Request.type",
+    "href": "redarx/Request/type.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.Request.hashCode",
+    "href": "redarx/Request/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.Request.runtimeType",
+    "href": "redarx/Request/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.Request.toString",
+    "href": "redarx/Request/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.Request.noSuchMethod",
+    "href": "redarx/Request/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.Request.==",
+    "href": "redarx/Request/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Request",
+      "type": "class"
+    }
+  },
+  {
+    "name": "Store",
+    "qualifiedName": "redarx.Store",
+    "href": "redarx/Store-class.html",
+    "type": "class",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "Store",
+    "qualifiedName": "redarx.Store",
+    "href": "redarx/Store/Store.html",
+    "type": "constructor",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "data",
+    "qualifiedName": "redarx.Store.data",
+    "href": "redarx/Store/data.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "data$",
+    "qualifiedName": "redarx.Store.data$",
+    "href": "redarx/Store/data$.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "history",
+    "qualifiedName": "redarx.Store.history",
+    "href": "redarx/Store/history.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "history$",
+    "qualifiedName": "redarx.Store.history$",
+    "href": "redarx/Store/history$.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "initialStateProvider",
+    "qualifiedName": "redarx.Store.initialStateProvider",
+    "href": "redarx/Store/initialStateProvider.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "state",
+    "qualifiedName": "redarx.Store.state",
+    "href": "redarx/Store/state.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "hashCode",
+    "qualifiedName": "redarx.Store.hashCode",
+    "href": "redarx/Store/hashCode.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "runtimeType",
+    "qualifiedName": "redarx.Store.runtimeType",
+    "href": "redarx/Store/runtimeType.html",
+    "type": "property",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "apply",
+    "qualifiedName": "redarx.Store.apply",
+    "href": "redarx/Store/apply.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "cancel",
+    "qualifiedName": "redarx.Store.cancel",
+    "href": "redarx/Store/cancel.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "update",
+    "qualifiedName": "redarx.Store.update",
+    "href": "redarx/Store/update.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "toString",
+    "qualifiedName": "redarx.Store.toString",
+    "href": "redarx/Store/toString.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "noSuchMethod",
+    "qualifiedName": "redarx.Store.noSuchMethod",
+    "href": "redarx/Store/noSuchMethod.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "operator ==",
+    "qualifiedName": "redarx.Store.==",
+    "href": "redarx/Store/operator_equals.html",
+    "type": "method",
+    "enclosedBy": {
+      "name": "Store",
+      "type": "class"
+    }
+  },
+  {
+    "name": "CommandBuilder",
+    "qualifiedName": "redarx.CommandBuilder",
+    "href": "redarx/CommandBuilder.html",
+    "type": "typedef",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  },
+  {
+    "name": "InitialStateProvider",
+    "qualifiedName": "redarx.InitialStateProvider",
+    "href": "redarx/InitialStateProvider.html",
+    "type": "typedef",
+    "enclosedBy": {
+      "name": "redarx",
+      "type": "library"
+    }
+  }
+]

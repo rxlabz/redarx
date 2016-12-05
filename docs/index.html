@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="made with love by dartdoc 0.9.8">
+    <meta name="description" content="redarx API docs, for the Dart programming language.">
+    <title>redarx - Dart API docs</title>
+
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Roboto:500,400italic,300,400'
+          type='text/css'>
+    <link rel="stylesheet" href="static-assets/prettify.css">
+    <link rel="stylesheet" href="static-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static-assets/styles.css">
+    <link rel="icon" href="static-assets/favicon.png">
+
+    <!-- Do not remove placeholder -->
+    <!-- Header Placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header class="container-fluid" id="title">
+    <nav class="navbar navbar-fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 contents">
+                    <ol class="breadcrumbs gt-separated hidden-xs">
+                        <li class="self-crumb">redarx</li>
+                    </ol>
+                    <div class="self-name">redarx</div>
+                    <form class="search navbar-right" role="search">
+                        <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead"
+                               placeholder="Loading search...">
+                    </form>
+                </div> <!-- /col -->
+            </div> <!-- /row -->
+        </div> <!-- /container -->
+    </nav>
+
+    <div class="container masthead">
+        <div class="row">
+            <div class="col-sm-12 contents">
+                <ol class="breadcrumbs gt-separated visible-xs">
+                </ol>
+                <div class="title-description">
+                    <h1 class="title">
+                        <span class="kind">package</span> redarx
+                    </h1>
+                </div>
+                <ul class="subnav">
+                    <li><a href="index.html#libraries">Libraries</a></li>
+                </ul>
+            </div> <!-- /col -->
+        </div> <!-- /row -->
+    </div> <!-- /container -->
+
+</header>
+
+<div class="container body">
+    <div class="row">
+
+        <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+            <h5>redarx</h5>
+
+
+            <ol>
+                <li class="section-title"><a href="index.html#libraries">Libraries</a></li>
+                <li><a href="redarx/redarx-library.html">redarx</a></li>
+            </ol>
+        </div>
+
+        <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+            <section class="desc markdown">
+                <h1>Redarx (POC)</h1>
+                <p>Experimental Dart State Management
+                    humbly inspired by <a href="http://www.spicefactory.org/parsley/">Parsley</a> / <a
+                            href="http://redux.js.org">Redux</a> / <a href="https://github.com/ngrx">ngrx</a> and <a
+                            href="https://github.com/staltz">André Stalz work</a></p>
+                <p><img alt="redarx-principles" src="static-assets/redarx_01_3.jpg"></p>
+                <h2><a href="https://github.com/rxlabz/redarx-todo">Demo</a></h2>
+                <h2>Goals</h2>
+                <ul>
+                    <li>study Dart : streams, generics, annotations, asynchrony...</li>
+                    <li>study Redux, Mobx, state management</li>
+                    <li>play with reducers, Request/Commands mapping...</li>
+                    <li>and more studies, more experiments, more play...</li>
+                </ul>
+                <h2>Principles</h2>
+                <p>The Application State is managed in a Store
+                    <abstractmodel>.</abstractmodel>
+                </p>
+                <p>State is updated by commands, and the store keep a list of executed commands.</p>
+                <p>State is evaluated by a reducers of model commands updates, basic cancellation is allowed by simply
+                    remove the last command from "history".</p>
+                <p>A Commander listen to a stream of Requests dispatched by a Dispatcher injected in the application
+                    components | controllers |&nbsp;PM | VM</p>
+                <p>Each Request is defined by an RequestType enum, and can contains data.</p>
+                <p>Requests are "converted" to commands by the Commander, based on the CommanderConfig.map
+                    definition </p>
+                <ul>
+                    <li>the dispatcher is injected in view || controller || PresentationModel || ViewModel</li>
+                    <li>Controllers use the dispatcher to dispatch Requests</li>
+                    <li>Request are categorized by types, types are defined in RequestTypes</li>
+                    <li>the dispatcher stream dispatched Requests</li>
+                    <li>the dispatcher is injected in Commander</li>
+                    <li>the commander listen the Requests stream</li>
+                    <li>each Request is tied to a command via a CommanderConfig which is injected in Commander</li>
+                    <li>Commander need a CommanderConfig containing a Map&lt;RequestType,Command&gt;</li>
+                    <li>when an Request is dispatched, the commander add the corresponding command to the store</li>
+                    <li>the store then execute</li>
+                    <li>a (synchronous) command is executed to update the store</li>
+                    <li>the store is injected in the commander</li>
+                </ul>
+                <h2>TODO</h2>
+                <ul>
+                    <li>implements a Scan stream transformer » just emit the last reduced state</li>
+                    <li>fix the generic/command (
+                        <t extends="" model=""> mess)</t>
+                    </li>
+                    <li>typed Request ? BookRequest, UserRequest ...?</li>
+                    <li>async commands</li>
+                    <li>more stream</li>
+                    <li>external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading
+                        ?
+                    </li>
+                    <li>...</li>
+                </ul>
+                <h2>Questionning</h2>
+                <ul>
+                    <li>dispatcher : use a streamController.add rather than dispatch method ?</li>
+                    <li>multiple store ? dispatcher ? commander ?</li>
+                    <li>each component could set an Request stream and the commander could maybe listen to it</li>
+                </ul>
+            </section>
+
+
+            <section class="summary" id="libraries">
+                <h2>Libraries</h2>
+                <dl>
+                    <dt id="redarx">
+                        <span class="name"><a href="redarx/redarx-library.html">redarx</a></span>
+                    </dt>
+                    <dd>
+                        <p>Redarx : action dispatcher commander store</p>
+                    </dd>
+                </dl>
+            </section>
+
+        </div> <!-- /.main-content -->
+
+        <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+
+        </div><!--/.sidebar-offcanvas-right-->
+
+    </div> <!-- row -->
+</div> <!-- container -->
+
+<footer>
+    <div class="container-fluid">
+        <div class="container">
+            <p class="text-center">
+        <span class="no-break">
+          redarx 0.2.1
+        </span>
+                &bull;
+                <span class="no-break">
+          <a href="https://www.dartlang.org">
+            <img src="static-assets/favicon.png" alt="Dart" title="Dart" width="16" height="16">
+          </a>
+        </span>
+                &bull;
+                <span class="copyright no-break">
+          <a href="http://creativecommons.org/licenses/by-sa/4.0/">cc license</a>
+        </span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/prettify.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- Do not remove placeholder -->
+<!-- Footer Placeholder -->
+
+</body>
+
+</html>

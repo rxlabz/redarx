@@ -3,6 +3,7 @@
 ## 0.2.1
 
 - CommandConfig : overload operator[] » allow accessing RequestType associated Command via `config[RequestType]`
+- [generated doc](https://rxlabz.github.io/redarx)
 
 ## 0.2.0
 
