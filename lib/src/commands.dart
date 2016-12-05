@@ -1,12 +1,13 @@
-import 'package:redarx/src/request.dart';
-import 'package:redarx/src/dispatcher.dart';
+import 'dart:async';
+
 import 'package:redarx/src/model.dart';
+import 'package:redarx/src/request.dart';
 import 'package:redarx/src/store.dart';
 
 /**
  * type of method which provide a method to instantiate a new Command
  */
-typedef Command<T> CommandBuilder<T extends AbstractModel>(dynamic value);
+typedef Command<T> CommandBuilder<T extends AbstractModel>(value);
 
 
 /**
@@ -31,19 +32,15 @@ class Commander {
   Store<AbstractModel> store;
 
   /**
-   * request dispatcher
-   */
-  Dispatcher dispatcher;
-
-  /**
    *
    * @param CommanderConfig config
    * @param Store<AbstractModel> this.store
-   * @param Dispatcher this.dispatcher
+   * @param Stream<Request> requestStream
    */
   Commander(CommanderConfig this.config, Store<AbstractModel> this.store,
-      Dispatcher this.dispatcher) {
-    dispatcher.onRequest.listen((Request a) => exec(a));
+      Stream<Request> requestStream) {
+    requestStream.listen((Request a) => exec(a));
+    store.apply();
   }
 
   /**
