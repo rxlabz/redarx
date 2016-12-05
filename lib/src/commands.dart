@@ -20,27 +20,44 @@ abstract class Command<G extends AbstractModel> {
  * listen to dispatcher's stream of actions and map them to commands, executed on the store
  */
 class Commander {
+  /**
+   * commander config : RequestType » Commands mapping
+   */
   CommanderConfig config;
 
+  /**
+   * store
+   */
   Store<AbstractModel> store;
 
+  /**
+   * request dispatcher
+   */
   Dispatcher dispatcher;
 
+  /**
+   *
+   * @param CommanderConfig config
+   * @param Store<AbstractModel> this.store
+   * @param Dispatcher this.dispatcher
+   */
   Commander(CommanderConfig this.config, Store<AbstractModel> this.store,
       Dispatcher this.dispatcher) {
-    dispatcher.onDispatch.listen((Request a) => handle(a));
+    dispatcher.onRequest.listen((Request a) => exec(a));
   }
 
+  /**
+   * cancel last store command
+   */
   cancel() => store.cancel();
 
-  _exec(Command<AbstractModel> c) {
-    store.update(c);
-  }
-
-  handle(Request a) {
+  /**
+   * update store with Command defined by Request
+   */
+  exec(Request a) {
     var handler = this.config.getHandler(a.actionType);
     try{
-      _exec(handler(a.value));
+      store.update(handler(a.value));
     } catch (err){
       print('Commander.handle... No command defined for this Action ${a} \n $err');
     }
@@ -54,7 +71,7 @@ class CommanderConfig<A> {
   Map<A, CommandBuilder<AbstractModel>> handlers;
 
   /**
-   * A(ctionTypes) / CommandBuilders mapping injection
+   * RequestTypes / CommandBuilders mapping injection
    */
   CommanderConfig(Map<A, CommandBuilder> map) {
     handlers = map;
@@ -67,6 +84,10 @@ class CommanderConfig<A> {
     return handlers.keys.contains(type) ? handlers[type] : null;
   }
 
+  /**
+   * add post constructor
+   */
+   // TODO : define use cases
   void addHandler(Request a, CommandBuilder<AbstractModel> constructor) {
     handlers[a.actionType] = constructor;
   }
