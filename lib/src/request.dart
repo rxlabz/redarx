@@ -1,17 +1,18 @@
-/**
- * Action : type , update value
- */
+/// Action : type , update value
 class Request<T, V> {
-  T actionType;
-  V value;
+  /// type of request
+  T type;
 
-  Request(T this.actionType, {withValue}){
-    value = withValue;
+  /// value (optionnal)
+  V payload;
+
+  /// build a Request with an enum type and optional value
+  Request(T this.type, {V withData}):payload = withData{
   }
 
   @override
   String toString() {
-    return "Request{ type : $actionType , value $value }";
+    return "Request{ type : $type , value $payload }";
   }
 
 }
