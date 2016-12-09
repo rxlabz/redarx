@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:redarx/src/model.dart';
 import 'package:redarx/src/request.dart';
+import 'package:redarx/src/reversible-store.dart';
 import 'package:redarx/src/store.dart';
 
 /// type of method which provide a method to instantiate a new Command
@@ -14,23 +15,26 @@ abstract class Command<G extends AbstractModel> {
 
 /// listen to dispatcher's stream of actions and
 /// map them to commands, executed by the store on the model
-class Commander {
+class Commander<S extends Command<T>, T extends AbstractModel> {
 
   /// commander config : RequestType » Commands mapping
   CommanderConfig config;
 
   /// store
-  Store<AbstractModel> store;
+  Store<S, T> store;
 
    /// [CommanderConfig] config / [Store]<AbstractModel> this.store
    /// [Stream]<Request> requestStream
   Commander(this.config, this.store, Stream<Request> requestStream) {
     requestStream.listen((Request a) => exec(a));
-    store.apply();
+    //store.apply();
   }
 
   /// cancel last store command
-  cancel() => store.cancel();
+  cancel() {
+    if (store is ReversibleStore)
+      (store as ReversibleStore).cancel();
+  }
 
   /// update store with Command defined by Request
   exec(Request a) {
@@ -42,13 +46,14 @@ class Commander {
 /// map [Request] to [CommandBuilder]
 class CommanderConfig<A> {
 
-  CommandBuilder<AbstractModel> operator [](key) {
+  CommandBuilder operator [](key) {
     try {
       return map[key];
     } catch (err) {
       print(
           'CommanderConfig[key] » No command defined for this Request ${key} \n $err');
     }
+    return null;
   }
 
   /// map of [RequestType] : [Command]<[AbstractModel]>

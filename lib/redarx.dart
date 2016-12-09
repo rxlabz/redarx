@@ -4,9 +4,10 @@
 /// Redarx : action dispatcher commander store
 library redarx;
 
-export 'src/request.dart';
 export 'src/commands.dart';
 export 'src/dispatcher.dart';
 export 'src/model.dart';
+export 'src/request.dart';
+export 'src/reversible-store.dart';
 export 'src/store.dart';
 

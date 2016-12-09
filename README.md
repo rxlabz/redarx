@@ -91,6 +91,20 @@ class AddTodoCommand extends Command<TodoModel> {
 }
 ```
 
+### Store
+
+Basically a `(stream<Command<Model>>) => stream<Model>` transformer
+
+Receives new commands, and executes those with the current state/Model
+
+Use a `CommandStreamReducer<S extends Command, T extends AbstractModel>` to stream reduced states
+
+### Reversible Store
+
+The reversible store keep a history list of all executed commands and allow cancelling.
+
+it provide an access to currentState by reducing all the commands history. 
+
 ### State listening
 
 The store exposes a model$ stream
@@ -140,12 +154,11 @@ config[request.type](request.payload);
 - Commander need a CommanderConfig containing a Map<RequestType,CommandBuilder>
 - the store then execute commandHistory and push the new model value to a model stream
 
-
-
 ## TODO 
 
 - ~~fix the generic/command ( <T extends Model> mess)~~
-- **implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state**
+- ~~implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state~~
+- display list of commands / states for ReversibleStore
 - typed Request ? BookRequest, UserRequest ...?
 - async commands 
 - external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
