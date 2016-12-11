@@ -7,6 +7,7 @@ import 'package:redarx/src/store.dart';
 /// Store with a commands backup, allowing to cancel commands
 class ReversibleStore<C extends Command<M>, M extends AbstractModel>
     extends Store<C, M> {
+
   /// model snapshot
   M get currentState => apply();
 
@@ -15,12 +16,14 @@ class ReversibleStore<C extends Command<M>, M extends AbstractModel>
 
   List<Command<M>> get history => _history;
 
+  /// Constructor
   ReversibleStore(InitialStateProvider<M> initialStateProvider)
       : super(initialStateProvider) {
     _history = [];
     initHistory(historyController.stream);
   }
 
+  /// stock les commands ( sauf CancelCommand )
   void initHistory(Stream<C> hStream) {
     hStream.where((c) => !(c is CancelCommand)).listen((c) => history.add(c));
   }
@@ -30,7 +33,7 @@ class ReversibleStore<C extends Command<M>, M extends AbstractModel>
       history.fold(initialStateProvider().initial() as M,
               (M newState, Command<M> c) => c.exec(newState));
 
-  /// cancel last command if exists
+  /// cancel last command if exists and if
   cancel() {
     if (history.isEmpty) return;
 
@@ -47,6 +50,7 @@ class CancelCommand<T extends AbstractModel> extends Command<T> {
 
   CancelCommand(this.prevValue);
 
+  // command execution just return previous value
   @override
   T exec(T model) => prevValue;
 }
