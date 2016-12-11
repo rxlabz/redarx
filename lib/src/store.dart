@@ -6,7 +6,6 @@ import 'package:redarx/src/model.dart';
 
 /// state manager
 class Store<C extends Command<M>, M extends AbstractModel> {
-
   Stream<M> state$;
 
   /// initial state provider function cf. [InitialStateProvider]
@@ -17,9 +16,17 @@ class Store<C extends Command<M>, M extends AbstractModel> {
   StreamController<Command<M>> historyController =
   new StreamController<Command<M>>.broadcast();
 
+  /// command stream controller
+  @protected
+  StreamController<AsyncCommand<M>> asyncHistoryController =
+  new StreamController<AsyncCommand<M>>.broadcast();
+
   /// model update request via a new command
   /// command is added to history$
   void update(Command<AbstractModel> c) => historyController.add(c);
+
+  void updateAsync(AsyncCommand<AbstractModel> c) =>
+      asyncHistoryController.add(c);
 
   /// get initialState & init history$ stream
   Store(this.initialStateProvider) {
@@ -29,7 +36,6 @@ class Store<C extends Command<M>, M extends AbstractModel> {
         new CommandStreamReducer<Command<M>, M>.broadcast(
             initialStateProvider().initial() as M));
   }
-
 }
 
 /**
@@ -81,8 +87,13 @@ class CommandStreamReducer<S extends Command, T extends AbstractModel>
     _subscription = null;
   }
 
+  // on stream data : exec (sync or async) the command
+  // & inject newstate in the state$ stream
   Future onData(S cmd) async {
-    state = cmd.exec(state);
+    if (cmd is AsyncCommand)
+      state = await (cmd as AsyncCommand<T>).execAsync(state);
+    else
+      state = (cmd as Command<T>).exec(state);
     _controller.add(state);
   }
 

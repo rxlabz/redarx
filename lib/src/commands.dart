@@ -8,9 +8,23 @@ import 'package:redarx/src/store.dart';
 /// type of method which provide a method to instantiate a new Command
 typedef Command<T> CommandBuilder<T extends AbstractModel>(value);
 
+/// type of method which provide a method to instantiate a new AsyncCommand
+typedef AsyncCommand<T> AsyncCommandBuilder<T extends AbstractModel>(value);
+
 /// Command Base class
 abstract class Command<G extends AbstractModel> {
-  G exec(G model);
+  G exec(G state);
+}
+
+/// Command Base class
+abstract class AsyncCommand<G extends AbstractModel> extends Command<G> {
+  Future<G> execAsync(G state);
+
+  ///
+  @override
+  G exec(G state) {
+    throw "Error ! async commands should not use exec() but execAsync() instead";
+  }
 }
 
 /// listen to dispatcher's stream of actions and
@@ -26,8 +40,7 @@ class Commander<S extends Command<T>, T extends AbstractModel> {
    /// [CommanderConfig] config / [Store]<AbstractModel> this.store
    /// [Stream]<Request> requestStream
   Commander(this.config, this.store, Stream<Request> requestStream) {
-    requestStream.listen((Request a) => exec(a));
-    //store.apply();
+    requestStream.listen((Request req) => exec(req));
   }
 
   /// cancel last store command
@@ -37,8 +50,8 @@ class Commander<S extends Command<T>, T extends AbstractModel> {
   }
 
   /// update store with Command defined by Request
-  exec(Request a) {
-    store.update(config[a.type](a.payload));
+  exec(Request req) {
+    store.update(config[req.type](req.payload));
   }
 }
 
@@ -50,10 +63,8 @@ class CommanderConfig<A> {
     try {
       return map[key];
     } catch (err) {
-      print(
-          'CommanderConfig[key] » No command defined for this Request ${key} \n $err');
+      throw 'CommanderConfig[key] » No command defined for this Request ${key} \n $err';
     }
-    return null;
   }
 
   /// map of [RequestType] : [Command]<[AbstractModel]>
@@ -67,7 +78,6 @@ class CommanderConfig<A> {
   CommandBuilder<AbstractModel> getCommand(A type) =>
       map.keys.contains(type) ? map[type] : null;
 
-  // TODO : define use cases
   /// add post constructor
   void addHandler(Request a, CommandBuilder<AbstractModel> constructor) {
     map[a.type] = constructor;

@@ -74,7 +74,7 @@ exec(Request a) {
   }
 ```
 
-Commands defined a public exec method which receive the currentState and return the new one.
+The commands define a public exec method which receive the currentState and return the new one.
 
 ```dart
 class AddTodoCommand extends Command<TodoModel> {
@@ -90,6 +90,10 @@ class AddTodoCommand extends Command<TodoModel> {
   }
 }
 ```
+
+### Async Commands
+
+Async commands allows async evaluation of the new state 
 
 ### Store
 
@@ -123,7 +127,7 @@ modelSub = _model$.listen((TodoModel model) {
     });
   }
 ```
-
+ 
 ## Event$ » Request$ » Command$ » state$ 
 
 The Application State is managed in a Store<AbstractModel>.
@@ -158,14 +162,15 @@ config[request.type](request.payload);
 
 - ~~fix the generic/command ( <T extends Model> mess)~~
 - ~~implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state~~
-- display list of commands / states for ReversibleStore
-- typed Request ? BookRequest, UserRequest ...?
 - async commands 
+- history UI
+- typed Request ? BookRequest, UserRequest ...?
 - external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
 - ...
 
 ## Questionning
 
+- use a EnumClass implementation rather than dart enum type
 - dispatcher : use a streamController.add rather than dispatch method ?
 - multiple store ? dispatcher ? commander ?
 - each component could set an Request stream and the commander could maybe listen to it
