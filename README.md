@@ -162,9 +162,11 @@ config[request.type](request.payload);
 
 - ~~fix the generic/command ( <T extends Model> mess)~~
 - ~~implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state~~
-- async commands 
+- ~~async commands~~
+- test Angular integration
 - history UI
 - typed Request ? BookRequest, UserRequest ...?
+- test
 - external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
 - ...
 
