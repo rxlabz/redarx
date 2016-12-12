@@ -1,9 +1,9 @@
 # Redarx (POC)
 
 Experimental Dart State Management 
-humbly inspired by [Parsley](http://www.spicefactory.org/parsley/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) and [André Stalz work](https://github.com/staltz)
+humbly inspired by [Elm](http://elm-lang.org/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) , [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/)
 
-![redarx-principles](docs/graphs/redarx_01_3.jpg)
+![redarx-principles](docs/graphs/redarx_01_.jpg)
 
 ## [Demo](https://github.com/rxlabz/redarx-todo) / [Dart doc](https://rxlabz.github.io/redarx)
 
