@@ -1,4 +1,6 @@
-/// Action : type , update value
+typedef void Dispatch(Request);
+
+/// Request aka Action, aka Events, aka Notification : type , update value
 class Request<T, V> {
   /// type of request
   T type;

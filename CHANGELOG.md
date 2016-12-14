@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0
+
+- immutable model
+- refactoring
+- Angular Dart compatible
+
+## 0.4.0
+
+- Async Commands
+
 ## 0.2.1
 
 - CommandConfig : overload operator[] » allow accessing RequestType associated Command via `config[RequestType]`

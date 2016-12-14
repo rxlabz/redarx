@@ -103,6 +103,8 @@ Receives new commands, and executes those with the current state/Model
 
 Use a `CommandStreamReducer<S extends Command, T extends AbstractModel>` to stream reduced states
 
+The store manage a stream of immutable states instances. 
+
 ### Reversible Store
 
 The reversible store keep a history list of all executed commands and allow cancelling.
@@ -111,7 +113,7 @@ it provide an access to currentState by reducing all the commands history.
 
 ### State listening
 
-The store exposes a model$ stream
+The store exposes a stream of immutable states
 
 ```dart
 Stream<TodoModel> _model$;
@@ -163,10 +165,11 @@ config[request.type](request.payload);
 - ~~fix the generic/command ( <T extends Model> mess)~~
 - ~~implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state~~
 - ~~async commands~~
-- test Angular integration
+- ~~test Angular integration~~
+- test with Firebase
 - history UI
 - typed Request ? BookRequest, UserRequest ...?
-- test
+- tests
 - external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
 - ...
 
