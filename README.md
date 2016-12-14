@@ -5,8 +5,8 @@ humbly inspired by [Elm](http://elm-lang.org/) / [Redux](http://redux.js.org) / 
 
 ![redarx-principles](docs/graphs/redarx_graph.jpg)
 
-## [Redarx with AngularDart example](https://github.com/rxlabz/redarx-todo)
-## [Redarx with Vanilla Dart example](https://github.com/rxlabz/redarx-angular-example)
+## [Redarx with AngularDart example](https://github.com/rxlabz/redarx-angular-example)
+## [Redarx with Vanilla Dart example](https://github.com/rxlabz/redarx-todo)
 
 ## Goals
 
