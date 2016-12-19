@@ -1,19 +1,15 @@
-# Redarx (POC)
+# Redarx
 
 Experimental Dart State Management 
-humbly inspired by [Elm](http://elm-lang.org/) / [Redux](http://redux.js.org) / [ngrx](https://github.com/ngrx) , [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/)
+humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.org) <= [Elm](http://elm-lang.org/), [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/).
 
 ![redarx-principles](docs/graphs/redarx_graph.jpg)
 
-## [Redarx with AngularDart example](https://github.com/rxlabz/redarx-angular-example)
-## [Redarx with Vanilla Dart example](https://github.com/rxlabz/redarx-todo)
+## Examples
 
-## Goals
+- [Redarx with AngularDart example](https://github.com/rxlabz/redarx-angular-example)
+- [Redarx with Vanilla Dart example](https://github.com/rxlabz/redarx-todo)
 
-- study Dart : streams, generics, annotations, asynchrony...
-- study Redux, Mobx,  state management
-- play with reducers, Request/Commands mapping...
-- and more studies, more experiments, more play...
 
 ## Principles
 
@@ -130,14 +126,25 @@ modelSub = _model$.listen((TodoModel model) {
     });
   }
 ```
+
+### Experimental multi-channel dispatcher (0.6.0)
  
+Async commands are maybe not the best way to connect a Firebase data-source.
+ 
+The [redarx-ng-firebase]() example shows a way to dispatch firebase queries via a new dispatcher method : query.
+ 
+Queries are dispatched to a Firebase service, which update the base.
+The service handles firebase.database child and values events and dispatch update request via the dispatch() method. 
+
 ## Event$ » Request$ » Command$ » state$ 
 
-The Application State is managed in a Store<AbstractModel>.
+The Application State is managed in a Store<T extends AbstractModel>.
 
 State is updated by commands, and the store keep a list of executed commands.
 
-State is evaluated by a reducers of model commands updates, basic cancellation is allowed by simply remove the last command from "history".
+State is evaluated by commands updates,
+
+In reversible-store, cancellation is allowed by simply remove the last command from "history".
 
 A Commander listen to a stream of Requests dispatched by a Dispatcher injected in the application components | controllers | PM | VM
 
@@ -161,22 +168,31 @@ config[request.type](request.payload);
 - Commander need a CommanderConfig containing a Map<RequestType,CommandBuilder>
 - the store then execute commandHistory and push the new model value to a model stream
 
+
 ## TODO 
 
 - ~~fix the generic/command ( <T extends Model> mess)~~
 - ~~implements a Scan stream transformer » to allow only run the last commands & emit the last reduced state~~
 - ~~async commands~~
 - ~~test Angular integration~~
-- test with Firebase
-- history UI
+- ~~test with Firebase~~
+- use values types [cf built_value](https://github.com/google/built_value.dart)
+- time travel / history UI
 - typed Request ? BookRequest, UserRequest ...?
 - tests
-- external config file ? dynamic runtime RequestType/Command Pair via defered libraries loading ?
+- external config file ? 
 - ...
 
-## Questionning
+## Doubts
 
 - use a EnumClass implementation rather than dart enum type
 - dispatcher : use a streamController.add rather than dispatch method ?
 - multiple store ? dispatcher ? commander ?
 - each component could set an Request stream and the commander could maybe listen to it
+
+## Goals
+
+- study Dart : streams, generics, annotations, asynchrony...
+- study Redux & ngrx, play with reducers & Request/Commands mapping...
+- and more studies, more experiments, more play...
+- define a solid architecture for my coming projects

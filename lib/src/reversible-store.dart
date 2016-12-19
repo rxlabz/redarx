@@ -24,7 +24,7 @@ class ReversibleStore<C extends Command<M>, M extends AbstractModel>
   }
 
   /// stock les commands ( sauf CancelCommand )
-  void initHistory(Stream<C> hStream) {
+  void initHistory(Stream<Command<M>> hStream) {
     hStream.where((c) => !(c is CancelCommand)).listen((c) => history.add(c));
   }
 
@@ -34,7 +34,7 @@ class ReversibleStore<C extends Command<M>, M extends AbstractModel>
               (M newState, Command<M> c) => c.exec(newState));
 
   /// cancel last command if exists and if
-  cancel() {
+  void cancel() {
     if (history.isEmpty) return;
 
     history.removeLast();

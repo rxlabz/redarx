@@ -24,9 +24,9 @@ class Store<C extends Command<M>, M extends AbstractModel> {
 
   /// model update request via a new command
   /// command is added to history$
-  void update(Command<AbstractModel> c) => historyController.add(c);
+  void update(Command<M> c) => historyController.add(c);
 
-  void updateAsync(AsyncCommand<AbstractModel> c) =>
+  void updateAsync(AsyncCommand<M> c) =>
       asyncHistoryController.add(c);
 
   /// get initialState & init history$ stream

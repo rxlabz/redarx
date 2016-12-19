@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:redarx/src/model.dart';
 
 /// type of method which provide a method to instantiate a new Command
-typedef Command<T> CommandBuilder<T extends AbstractModel>(value);
+typedef Command<T> CommandBuilder<T extends AbstractModel>([dynamic value]);
 
 /// type of method which provide a method to instantiate a new AsyncCommand
-typedef AsyncCommand<T> AsyncCommandBuilder<T extends AbstractModel>(value);
+typedef AsyncCommand<T> AsyncCommandBuilder<T extends AbstractModel>([dynamic value]);
 
 /// Command Base class
 abstract class Command<G extends AbstractModel> {

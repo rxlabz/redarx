@@ -4,13 +4,12 @@
 import 'package:redarx/redarx.dart';
 import 'package:test/test.dart';
 
-
 void main() {
   group('A group of tests', () {
     Store store;
 
     setUp(() {
-      store = new Store(()=>new Model()..initial());
+      store = new Store(() => new Model()..initial());
     });
 
     test('initial store state is an empty model', () {
@@ -23,13 +22,16 @@ void main() {
   });
 }
 
-class Model extends AbstractModel{
-
+class Model extends AbstractModel {
   String text;
   int number;
   List<String> list;
   Map<String, dynamic> map;
 
   @override
-  AbstractModel initial() => new Model()..text=''..number=0..list=[]..map={};
+  AbstractModel initial() => new Model()
+    ..text = ''
+    ..number = 0
+    ..list = []
+    ..map = <String, dynamic>{};
 }

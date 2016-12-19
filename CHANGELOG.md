@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+- prototypal "multi-channels" dispatcher (temporary): 
+  - query() => QUERIE$ => Prototypal FirebaseService integration
+  - dispatch() => REQUEST$ => Commander 
+  
+- strong mode with no implicit casts or dynamic
+
 ## 0.5.0
 
 - immutable model

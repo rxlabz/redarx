@@ -13,7 +13,7 @@ import 'package:redarx/src/store.dart';
 /// map them to commands, executed by the store on the model
 class Commander<S extends Command<T>, T extends AbstractModel> {
   /// commander config : RequestType » Commands mapping
-  CommanderConfig _config;
+  CommanderConfig<dynamic, T> _config;
 
   /// store
   Store<S, T> store;
@@ -25,12 +25,12 @@ class Commander<S extends Command<T>, T extends AbstractModel> {
   }
 
   /// cancel last store command
-  cancel() {
+  void cancel() {
     if (store is ReversibleStore) (store as ReversibleStore).cancel();
   }
 
   /// update store with Command defined by Request
-  _exec(Request req) {
+  void _exec(Request req) {
     print('Commander._exec req ${req}');
     store.update(_config[req.type](req.payload));
   }
