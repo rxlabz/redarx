@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:redarx/src/request.dart';
 
+typedef void DispatchFn(Request req);
+
 /// actions dispatcher
 class Dispatcher {
 
