@@ -1,12 +1,13 @@
-# Redarx
+# Unstart
 
-Experimental Dart State Management 
+(Experimental) Unidirectionnal data-flow State management for Dart 
 humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.org) <= [Elm](http://elm-lang.org/), [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/).
 
 ![redarx-principles](docs/graphs/redarx_graph.jpg)
 
 ## Examples
 
+- [Redarx with Flutter example](https://github.com/rxlabz/redarx_flutter_example) (uses [built_value])
 - [Redarx with AngularDart example](https://github.com/rxlabz/redarx-angular-example)
 - [Redarx with Vanilla Dart example](https://github.com/rxlabz/redarx-todo)
 
@@ -15,24 +16,56 @@ humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.or
 
 ### Requests to Commands Mapping via CommanderConfig
 
+Goal : decouple request from action. View only dispatch dumb request, the logic to satisfy the request is associated to a command.
+
 ```dart
-final requestMap = new Map<RequestType, CommandBuilder>()
-  ..[RequestType.ADD_TODO] = AddTodoCommand.constructor()
-  ..[RequestType.ARCHIVE] = ArchiveCommand.constructor()
-  ..[RequestType.UPDATE_TODO] = UpdateTodoCommand.constructor()
-  ..[RequestType.CLEAR_ARCHIVES] = ClearArchivesCommand.constructor()
-  ..[RequestType.TOGGLE_SHOW_COMPLETED] = ToggleShowArchivesCommand.constructor();
+final requestMap =
+    <RequestType, CommandBuilder<TodoModel>>{
+  RequestType.ADD_TODO: AddTodoCommand.constructor(),
+  RequestType.UPDATE_TODO: UpdateTodoCommand.constructor(),
+  RequestType.CLEAR_ARCHIVES: ClearArchivesCommand.constructor(),
+  RequestType.COMPLETE_ALL: CompleteAllCommand.constructor(),
+  RequestType.LOAD_ALL: AsyncLoadAllCommand.constructor(DATA_PATH),
+  RequestType.TOGGLE_SHOW_COMPLETED: ToggleShowArchivesCommand.constructor()
+};
 ```
 
 ### Initialization
 
 ```dart
-final cfg = new CommanderConfig<RequestType>(requestMap);
+final config = new CommanderConfig<RequestType>(requestMap);
 final store = new Store<TodoModel>(() => new TodoModel.empty());
 final dispatcher = new Dispatcher();
 
-final cmder = new Commander(cfg, store, dispatcher.onRequest);
+final cmder = new Commander(config, store, dispatcher.onRequest);
+```
 
+*Flutter*
+```dart
+final requestMap = <RequestType, CommandBuilder>{
+  RequestType.LOAD_ALL: AsyncLoadAllCommand.constructor(DATA_PATH),
+  RequestType.ADD_TODO: AddTodoCommand.constructor(),
+  RequestType.UPDATE_TODO: UpdateTodoCommand.constructor(),
+  RequestType.CLEAR_ARCHIVES: ClearArchivesCommand.constructor(),
+  RequestType.COMPLETE_ALL: CompleteAllCommand.constructor(),
+  RequestType.TOGGLE_SHOW_COMPLETED: ToggleShowArchivesCommand.constructor()
+};
+
+void main() {
+  final cfg = new CommanderConfig<RequestType, TodoModel>(requestMap);
+  final store =
+      new Store<Command<TodoModel>, TodoModel>(() => new TodoModel.empty());
+  final dispatcher = new Dispatcher();
+
+  new Commander<Command<TodoModel>, TodoModel>(
+      cfg, store, dispatcher.request$);
+
+  runApp(new TodoApp(dispatcher.dispatch, store.state$));
+}
+```
+
+*Vanilla Dart*
+```dart
 var app = new AppComponent(querySelector('#app') )
 ..model$ = store.data$
 ..dispatch = dispatcher.dispatch
@@ -51,14 +84,29 @@ enum RequestType {
   CLEAR_ARCHIVES,
   TOGGLE_SHOW_COMPLETED
 }
+
+// you can enforce the typing by creating an optionnal request class
+class TodoRequest<T extends Todo> extends Request<RequestType, T> {
+  TodoRequest.loadAll() : super(RequestType.LOAD_ALL);
+  TodoRequest.clearArchives() : super(RequestType.CLEAR_ARCHIVES);
+  TodoRequest.completeAll() : super(RequestType.COMPLETE_ALL);
+  TodoRequest.toggleStatusFilter() : super(RequestType.TOGGLE_SHOW_COMPLETED);
+  TodoRequest.add(T todo) : super(RequestType.ADD_TODO, withData: todo);
+  TodoRequest.cancel(T todo) : super(RequestType.CANCEL_TODO, withData: todo);
+  TodoRequest.update(T todo) : super(RequestType.UPDATE_TODO, withData: todo);
+}
+
 ```
 
 Requests are defined by a type and an optional payload.
 
 ```dart
-dispatch( new Request(
-    RequestType.ADD_TODO, withData: new Todo(fldTodo.value))
-    );
+dispatch( new TodoRequest.add(new Todo(fldTodo.value)));
+```
+
+or
+```dart
+
 ```
 
 ### Commands
@@ -131,7 +179,7 @@ modelSub = _model$.listen((TodoModel model) {
  
 Async commands are maybe not the best way to connect a Firebase data-source.
  
-The [redarx-ng-firebase]() example shows a way to dispatch firebase queries via a new dispatcher method : query.
+The [redarx_ng_firebase](https://github.com/rxlabz/redarx_ng_firebase) example shows a way to dispatch firebase queries via a new dispatcher method : query.
  
 Queries are dispatched to a Firebase service, which update the base.
 The service handles firebase.database child and values events and dispatch update request via the dispatch() method. 
@@ -176,9 +224,11 @@ config[request.type](request.payload);
 - ~~async commands~~
 - ~~test Angular integration~~
 - ~~test with Firebase~~
+- ~~typed Request ? BookRequest, UserRequest ...? => TodoRequest cf. flutter example~~
 - use values types [cf built_value](https://github.com/google/built_value.dart)
+- multiple stores ?
 - time travel / history UI
-- typed Request ? BookRequest, UserRequest ...?
+
 - tests
 - external config file ? 
 - ...

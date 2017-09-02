@@ -6,7 +6,7 @@ import 'package:redarx/redarx.dart';
  * Stream transformer : reduce new state from commands stream
  * transform a Stream<Command> to Stream<AbstractModel>
  */
-class CommandStreamReducer<S extends Command, T extends AbstractModel>
+class CommandStreamReducer<S extends Command<T>, T extends AbstractModel>
     implements StreamTransformer<S, T> {
   T state;
 
@@ -57,7 +57,7 @@ class CommandStreamReducer<S extends Command, T extends AbstractModel>
     if (cmd is AsyncCommand)
       state = await (cmd as AsyncCommand<T>).execAsync(state);
     else
-      state = (cmd as Command<T>).exec(state);
+      state = cmd.exec(state);
     _controller.add(state);
   }
 

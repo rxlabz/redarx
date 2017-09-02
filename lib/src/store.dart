@@ -17,17 +17,18 @@ class Store<C extends Command<M>, M extends AbstractModel> {
   StreamController<Command<M>> historyController =
   new StreamController<Command<M>>.broadcast();
 
+  void update(Command<M> c) => historyController.add(c);
+
   /// command stream controller
-  @protected
+  /*@protected
   StreamController<AsyncCommand<M>> asyncHistoryController =
-  new StreamController<AsyncCommand<M>>.broadcast();
+  new StreamController<AsyncCommand<M>>.broadcast();*/
 
   /// model update request via a new command
   /// command is added to history$
-  void update(Command<M> c) => historyController.add(c);
 
-  void updateAsync(AsyncCommand<M> c) =>
-      asyncHistoryController.add(c);
+  /*void updateAsync(AsyncCommand<M> c) =>
+      asyncHistoryController.add(c);*/
 
   /// get initialState & init history$ stream
   Store(this.initialStateProvider) {
