@@ -1,6 +1,6 @@
 # Unstart
 
-(Experimental) Unidirectionnal data-flow State management for Dart 
+(Experimental) Unidirectional data-flow State management for Dart 
 humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.org) <= [Elm](http://elm-lang.org/), [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/).
 
 ![redarx-principles](docs/graphs/redarx_graph.jpg)
@@ -16,7 +16,7 @@ humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.or
 
 ### Requests to Commands Mapping via CommanderConfig
 
-Goal : decouple request from action. View only dispatch dumb request, the logic to satisfy the request is associated to a command.
+Goal : decouple request from action. View only dispatch dumb requests, the logic to execute the request is delegated to a command.
 
 ```dart
 final requestMap =
