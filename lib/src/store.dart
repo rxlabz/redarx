@@ -15,7 +15,7 @@ class Store<C extends Command<M>, M extends AbstractModel> {
   /// command stream controller
   @protected
   StreamController<Command<M>> historyController =
-  new StreamController<Command<M>>.broadcast();
+      new StreamController<Command<M>>.broadcast();
 
   void update(Command<M> c) => historyController.add(c);
 
@@ -32,7 +32,7 @@ class Store<C extends Command<M>, M extends AbstractModel> {
 
   /// get initialState & init history$ stream
   Store(this.initialStateProvider) {
-    var historyStream = historyController.stream;
+    final historyStream = historyController.stream;
 
     state$ = historyStream.transform(
         new CommandStreamReducer<Command<M>, M>.broadcast(

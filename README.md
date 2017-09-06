@@ -1,4 +1,4 @@
-# Unstart
+# Unstart ( ex Redarx )
 
 (Experimental) Unidirectional data-flow State management for Dart 
 humbly inspired by [ngrx](https://github.com/ngrx) <= [Redux](http://redux.js.org) <= [Elm](http://elm-lang.org/), [André Stalz work](https://github.com/staltz) & [Parsley](http://www.spicefactory.org/parsley/).
@@ -52,15 +52,7 @@ final requestMap = <RequestType, CommandBuilder>{
 };
 
 void main() {
-  final cfg = new CommanderConfig<RequestType, TodoModel>(requestMap);
-  final store =
-      new Store<Command<TodoModel>, TodoModel>(() => new TodoModel.empty());
-  final dispatcher = new Dispatcher();
-
-  new Commander<Command<TodoModel>, TodoModel>(
-      cfg, store, dispatcher.request$);
-
-  runApp(new TodoApp(dispatcher.dispatch, store.state$));
+  runApp(new StoreProvider(requestMap: requestMap, child:new TodoApp()));
 }
 ```
 
